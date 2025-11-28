@@ -1,0 +1,59 @@
+/* ============================
+   BASE GLOBAL (style pro)
+=============================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+}
+
+/* ============================
+   HEADER / NAV
+=============================== */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  background: #ffffff;
+  padding: 1rem 2rem;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.nav a {
+  text-decoration: none;
+
+  color: #4b5563; /* gray-600 */
+  font-weight: 500;
+  font-size: 0.95rem;
+
+  padding: 0.4rem 0;
+  border-bottom: 2px solid transparent;
+
+  transition: all 0.25s ease;
+}
+
+.nav a:hover {
+  color: #1d4ed8; /* blue-700 */
+}
+
+.nav a.active {
+  color: #1d4ed8;
+  border-bottom: 2px solid #1d4ed8;
+}
+
+/* ============================
+   PAGE CONTENT
+=============================== */
+:host {
+  display: block;
+  background: #f9fafb;
+  min-height: 100vh;
+}
