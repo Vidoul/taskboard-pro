@@ -1,0 +1,25 @@
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TaskService {
+  private tasks = [
+    { id: 1, title: 'Préparer un cours Angular' },
+    { id: 2, title: 'Relire le module RxJS' },
+    { id: 3, title: 'Corriger les TPs' },
+  ];
+
+  private lastId = 3;
+  private tasksSubject = new BehaviorSubject(this.tasks);
+  tasks$ = this.tasksSubject.asObservable();
+
+  constructor() { }
+
+  addTask(title: string) {
+    const newTask = { id: ++this.lastId, title: title };
+    this.tasks = [...this.tasks, newTask];
+    this.tasksSubject.next(this.tasks);
+  }
+}

@@ -1,7 +1,5 @@
 # TaskboardPro
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.7.
-
 ## Commandes faites
 
 Commandes utilisées : 
@@ -15,59 +13,36 @@ Routes fonctionnelles :
 / (Home) et /about (About)
 ```
 
+## Séquence 2 – Logique réactive du flux de données
 
-## Development server
+1. Concepts compris
 
-To start a local development server, run:
+La programmation réactive permet à l'application de réagir automatiquement aux changements de données sans avoir à demander manuellement une mise à jour. Angular utilise la librairie RxJS pour gérer ces flux.
 
-```bash
-ng serve
-```
+2. Rôle du BehaviorSubject
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Dans le TaskService, nous utilisons un BehaviorSubject. C'est un type d'Observable qui :
 
-## Code scaffolding
+Garde en mémoire la dernière valeur émise (la liste des tâches à jour).
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Diffuse cette valeur immédiatement à tout nouveau composant qui s'y abonne.
 
-```bash
-ng generate component component-name
-```
+Permet d'émettre de nouvelles valeurs via la méthode .next().
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+3. Rôle du Pipe Async (| async)
 
-```bash
-ng generate --help
-```
+Dans le template HTML, le pipe async :
 
-## Building
+S'abonne automatiquement (subscribe) à l'Observable tasks$.
 
-To build the project run:
+Récupère les données et met à jour l'affichage à chaque changement.
 
-```bash
-ng build
-```
+Se désabonne automatiquement (unsubscribe) quand le composant est détruit, évitant les fuites de mémoire.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+4. Fonctionnement du flux
 
-## Running unit tests
+Service : Stocke les données et notifie les changements (this.tasksSubject.next(...)).
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Composant : Récupère le flux (tasks$) via l'injection de dépendance.
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Template : Affiche les données en temps réel grâce au pipe async.
