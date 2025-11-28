@@ -1,5 +1,7 @@
 # TaskboardPro
 
+## Séquence 1
+
 ## Commandes faites
 
 Commandes utilisées : 
@@ -13,7 +15,7 @@ Routes fonctionnelles :
 / (Home) et /about (About)
 ```
 
-## Séquence 2 – Logique réactive du flux de données
+## Séquence 2
 
 1. Concepts compris
 
@@ -46,3 +48,23 @@ Service : Stocke les données et notifie les changements (this.tasksSubject.next
 Composant : Récupère le flux (tasks$) via l'injection de dépendance.
 
 Template : Affiche les données en temps réel grâce au pipe async.
+
+## Seuence 3
+
+### Qu'est-ce que le Lazy Loading ?
+
+Le Lazy Loading (chargement paresseux) est une technique d'optimisation : au lieu de charger tout le code de l'application au démarrage, il ne charge le code d'une page (une feature) que lorsque l'utilisateur y accède.
+
+Résultat : L'application est beaucoup plus rapide à démarrer.
+
+### Comment on structure une app avec features/
+
+Structurer par features/ (fonctionnalités) consiste à organiser le code par domaines d'application plutôt que par type de fichier.
+
+features/ : Contient le code des fonctionnalités spécifiques (ex: tasks/, auth/). Ces dossiers sont chargés en Lazy Loading.
+
+core/ : Contient les services et les éléments qui doivent être des singletons (uniques et accessibles partout, ex: TaskService).
+
+shared/ : Contient les composants réutilisables (ex: FooterComponent).
+
+Cette structure permet de rendre chaque fonctionnalité indépendante et de la charger à la demande.

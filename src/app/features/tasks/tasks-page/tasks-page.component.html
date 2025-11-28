@@ -1,0 +1,17 @@
+<h2>Gestion des tâches</h2>
+
+@if (tasks$ | async; as tasks) {
+  <ul>
+    @for (t of tasks; track t.id) {
+      <li>{{ t.title }}</li>
+    }
+  </ul>
+} @else {
+  <p>Chargement...</p>
+}
+
+<hr />
+
+<button (click)="addTask('Nouvelle tâche Lazy Loaded')">
+  + Ajouter une tâche
+</button>
